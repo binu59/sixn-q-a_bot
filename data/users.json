@@ -1,0 +1,30 @@
+[
+  {
+    "id": "u-apac-lead",
+    "name": "Priya Wickramasinghe",
+    "title": "Regional Director, Asia Pacific",
+    "scope": { "kind": "region", "value": "Asia Pacific" },
+    "clearance": "standard"
+  },
+  {
+    "id": "u-eu-lead",
+    "name": "Sebastian Kohl",
+    "title": "Regional Director, Europe",
+    "scope": { "kind": "region", "value": "Europe" },
+    "clearance": "standard"
+  },
+  {
+    "id": "u-poc-coldchain",
+    "name": "Siti Nurhaliza Bakar",
+    "title": "Point of Contact, Meridian Cold Chain Malaysia",
+    "scope": { "kind": "entity", "value": "ap-004" },
+    "clearance": "standard"
+  },
+  {
+    "id": "u-cp-admin",
+    "name": "Corporate Planning (system owner)",
+    "title": "Corporate Planning",
+    "scope": { "kind": "all", "value": null },
+    "clearance": "elevated"
+  }
+]

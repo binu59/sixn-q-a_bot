@@ -1,0 +1,29 @@
+<!doctype html>
+<meta charset="utf-8"><title>Meridian assistant</title>
+<h3>Meridian governance assistant</h3>
+<p>User: <select id="u"></select></p>
+<p><textarea id="q" rows="3" cols="70" placeholder="Ask a question"></textarea></p>
+<p><button id="go">Ask</button></p>
+<pre id="a" style="white-space:pre-wrap"></pre>
+<small id="s"></small>
+<script>
+const $ = id => document.getElementById(id);
+fetch("/api/users").then(r => r.json()).then(us => {
+  for (const u of us) {
+    const o = document.createElement("option");
+    o.value = u.id; o.textContent = u.name + " — " + u.title;
+    $("u").appendChild(o);
+  }
+});
+$("go").onclick = async () => {
+  $("a").textContent = "…"; $("s").textContent = "";
+  try {
+    const r = await fetch("/api/ask", {method: "POST", headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({user_id: $("u").value, question: $("q").value})});
+    const d = await r.json();
+    if (!r.ok) { $("a").textContent = d.detail || "Error"; return; }
+    $("a").textContent = d.answer;
+    $("s").textContent = d.sources.length ? "Sources: " + d.sources.map(s => s.id + " (" + s.name + ")").join("; ") : "Sources: none";
+  } catch (e) { $("a").textContent = "Request failed"; }
+};
+</script>
